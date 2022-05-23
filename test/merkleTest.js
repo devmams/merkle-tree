@@ -34,7 +34,7 @@ contract('MerkleTest', (accounts) => {
     )
   })
 
-  it('isElligible Should return true', async () =>{
+  it('isEligible Should return true', async () =>{
     const leafNodes = [owner, otherAccount].map(x => keccak256(x))
     const tree = new MerkleTree(leafNodes, keccak256, {sortPairs: true})
     const root = '0x' + tree.getRoot().toString('hex')
@@ -43,7 +43,7 @@ contract('MerkleTest', (accounts) => {
     assert(await merkleTest.isEligible(eligibleProof, {from:owner}) === true)
   })
 
-  it('isElligible Should return false', async () =>{
+  it('isEligible Should return false', async () =>{
     const leafNodes = [owner, otherAccount].map(x => keccak256(x))
     const tree = new MerkleTree(leafNodes, keccak256, {sortPairs: true})
     const root = '0x' + tree.getRoot().toString('hex')

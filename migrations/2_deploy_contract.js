@@ -6,7 +6,7 @@ module.exports = async function (deployer, _, accounts) {
   await deployer.deploy(MerkleTest);
   let merkleTest = await MerkleTest.deployed()
 
-  let whitelistAddresses = accounts
+  const whitelistAddresses = accounts
 
   const leafNodes = whitelistAddresses.map(x => keccak256(x))
   const tree = new MerkleTree(leafNodes, keccak256, {sortPairs: true})
@@ -18,7 +18,7 @@ module.exports = async function (deployer, _, accounts) {
   console.log('tree : \n'+ tree.toString())
 
   const num_account = 2
-  let eligibleAddress = accounts[num_account]
+  const eligibleAddress = accounts[num_account]
   const eligibleLeaf = leafNodes[num_account]
   const eligibleProof = tree.getHexProof(eligibleLeaf)
   console.log('eligibleAddress : '+ eligibleAddress)
